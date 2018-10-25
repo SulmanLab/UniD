@@ -1,20 +1,8 @@
 ---
 title: "UniD: Unified Diagnostic Platform of gliomas"
 author: "Jie Yang"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{UniD}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
 <a id="top"></a>
 [Introduction](#Introduction)
