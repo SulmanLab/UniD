@@ -1,0 +1,26 @@
+citHeader("To cite lubridate in publications use:")
+
+citEntry(entry = "Article",
+  title        = "UniD: unified and integrated diagnostic pipeline for malignant gliomas 
+                  based on DNA methylation data",
+  author       = personList(as.person("Jie Yang"),
+                            as.person("Qianghu Wang"),
+                            as.person("Lihong Long"),
+                            as.person("Ravesanker Ezhilarasan"),
+                            as.person("Erik Sulman")),
+  journal      = "Cancer Research",
+  year         = "2017",
+  volume       = "77",
+  issue        = "13 Supplement",
+  pages        = "3348-3348",
+  url          = "<http://cancerres.aacrjournals.org/content/77/13_Supplement/3348.short>",
+
+  textVersion  =
+  paste("Jie Yang, Qianghu Wang, Lihong Long, Ravesanker Ezhilarasan, Erik Sulman (2017).", 
+        "UniD: unified and integrated diagnostic pipeline for malignant gliomas based on 
+         DNA methylation data [abstract]",
+        "In: Proceedings of the American Association for Cancer Research Annual Meeting 
+         2017; 2017 Apr 1-5; Washington, DC. Philadelphia (PA): AACR",
+        "Cancer Res 2017;77(13 Suppl):Abstract nr 3348. doi:10.1158/1538-7445.AM2017-3348")
+)
+

@@ -1,0 +1,25 @@
+Package: UniD
+Type: Package
+Title: Unified Diagnostic Platform for Gliomas
+Version: 0.0.1
+Date: 2017-11-25
+Author: Jie Yang [aut, cre]
+Maintainer: Jie Yang <jie.yang@uth.tmc.edu>
+Description: Unified Diagnostic Platform for Gliomas. It uses the DNA methylation microarray data 
+  (currently support Illumina 450k and EPIC platform) to predict multiple different genomic 
+  information, including IDH, ATRX, and TERT promoter mutation status, chromosome 1p/19q 
+  co-deletion status, TCGA gene expression subtypes with predicted probability, and gene MGMT 
+  expression level. Besides of the prediction functions, it also incorporate the data 
+  processing and quality control functions.
+License: Apache License 2.0
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.3.0)
+Imports: plyr, mlr (>= 2.12.1), wateRmelon (>= 1.20.2), glmnet, RPMM, minfi (>=
+        1.23.2), impute, IlluminaHumanMethylationEPICmanifest,
+        IlluminaHumanMethylation450kmanifest,methods (>= 3.3.3)
+Suggests: parallel, knitr, rmarkdown,
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2017-11-29 07:02:23 UTC; jieyang

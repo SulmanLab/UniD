@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Jie Yang" />
+
+<meta name="date" content="2018-01-28" />
+
+<title>UniD: Unified Diagnostic Platform of gliomas</title>
+
+
+
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">UniD: Unified Diagnostic Platform of gliomas</h1>
+<h4 class="author"><em>Jie Yang</em></h4>
+<h4 class="date"><em>2018-01-28</em></h4>
+
+
+
+<p><a id="top"></a> <a href="#Introduction">Introduction</a></p>
+<p><a href="#QC">Data Processing and QC</a></p>
+<ol style="list-style-type: decimal">
+<li><p><a href="#QC1">Data loading</a></p></li>
+<li><p><a href="#CheckInternal">Checking Internal Controls</a></p></li>
+<li><p><a href="#CheckQC">Checking Probe Quality</a></p></li>
+<li><p><a href="#BMIQ">Data normalization (BMIQ)</a></p></li>
+<li><p><a href="#filter">Probe filtering</a></p></li>
+</ol>
+<p><a href="#prediction">Data prediction</a></p>
+<p><a href="#example">Example</a></p>
+<p><a id="Introduction"></a></p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><code>UniD</code> is short for Unified Diagnostic Platform of gliomas, which is designed to predict other genomic information using Illumina Infinium DNA methylation microarray data. This package includes two section of function: data processing QC and genomic information prediction.</p>
+<p>In the data processing and quality control section:</p>
+<ul>
+<li><code>UniD.load()</code> can load the raw data;</li>
+<li><code>UniD.intctl()</code> can check the quality of internal control probes for each sample;</li>
+<li><code>UniD.dataqc</code> can evaluate the probe quality in terms of the probe detection P-value and beadcount;</li>
+<li><code>UniD.probefilter()</code> can filter out probes belong to certain categories and high proportion of missing values and samples with high proportion of missing values;</li>
+<li><code>UniD.BMIQ()</code> can normalize the data generated from Type I and Type II probes.</li>
+</ul>
+<p>In the genomic information prediction section: DNA methylation data generated from both <code>HumanMethylation 450k</code> and <code>HumanMethylation EPIC</code> platform can be used for prediction. With DNA methylation data, <code>UniD.pred()</code> can predict:</p>
+<ul>
+<li>Chromosome 1p/19q co-deletion</li>
+<li><em>IDH</em> mutation status</li>
+<li><em>ATRX</em> mutation status</li>
+<li><em>TERT</em> promoter mutation status</li>
+<li>TCGA gene expression subtype (Classical, Mesenchymal, and Proneural)</li>
+<li><em>MGMT</em> expression level of tumor</li>
+</ul>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="QC"></a></p>
+</div>
+<div id="data-processing-and-qc" class="section level2">
+<h2>Data processing and QC</h2>
+<p><a id="QC1"></a></p>
+<p><strong>1. Data loading</strong></p>
+<p>Raw <code>.idat</code> files should be stored in one folder with a <code>.csv</code> file which includes the information of sample, their corresponding sentrix ID and sentrix position. This sample sheet should be saved in specific format with <code>,</code> as the delimiter. For example (as shown in textEdit):</p>
+<pre><code>[Header],,,,,,
+Investigator Name, Jie Yang,,,,,
+Project Name, Example,,,,,
+Experiment Name, test,,,,,
+Date,01-01-1990,,,,,
+[Data],,,,,,
+Sample_Name,Sample_Well,Sample_Plate,Sample_Group,Pool_ID,Sentrix_ID,Sentrix_Position
+sample1,,,,,1001001001,R01C01
+sample2,,,,,1001001001,R02C01
+sample3,,,,,1001001001,R03C01
+sample4,,,,,1001001001,R04C01</code></pre>
+<p>A list with all necessary information will be created using <code>UniD.load()</code>. For example:</p>
+<pre><code>loading &lt;- UniD.load(dataDir = &quot;~/Desktop/IDAT/&quot;, outDir = &quot;~/Desktop/output/&quot;,
+arrayType = &quot;450k&quot;, write = T)</code></pre>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="CheckInternal"></a></p>
+<p><strong>2. Checking Internal Controls</strong></p>
+<p>Different categories of internal control were hold within each beadchip. Based on the criteria provided in Beadchip Control Reporter (BACR), each following categories will be checked and some of them have more than one probes:</p>
+<ul>
+<li>restoration (distinguished by sample Type, FFPE samples needed)</li>
+<li>staining</li>
+<li>extension</li>
+<li>hybridization</li>
+<li>target removal</li>
+<li>bisulfite conversion</li>
+<li>specificity</li>
+<li>nonpolymorphic</li>
+</ul>
+<p>However, it is not recommended to excludes sample which failed any categories. However, they could obviously be used to check the experiment quality especially when something goes wrong. A table with all the sample QC for those categories will be returned with function <code>UniD.intctl()</code>, as shown in example:</p>
+<pre><code>samQC &lt;- UniD.intctl(loading = loading, dataDir = &quot;~/Desktop/IDAT/&quot;,
+outDir = &quot;~/Desktop/output/&quot;, arrayType = &quot;450k&quot;, sampleType = &quot;FFPE&quot;,
+write = T)</code></pre>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="CheckQC"></a></p>
+<p><strong>3. Checking Probe Quality</strong></p>
+<p>Probes will be checked for detection P-value <code>detP</code> and beadcount <code>bc</code> in a sample-wise manner which means each sample are independent when being evaluated.</p>
+<p>The detection P-value is calculated by comparing each probes to the general backgroun probes. Probes failed when they have a <code>detP</code> &gt; 0.05 which means they are not significant detectable comparing to the background signal. The probe will be set as missing value. The beadcount is the number of bead for for probes. If the <code>bc</code> &lt; 3, that specific probe is failed and will be set as missing value for following analysis.</p>
+<p><code>Beta.raw</code> will be generated with the function <code>UniD.dataqc</code> with columns as samples and rows as probes. Missing values were included and data was represented using Beta value.</p>
+<pre><code>Beta.raw &lt;- UniD.dataqc(loading = loading, outDir = &quot;~/Desktop/output/&quot;,
+detP.cut = 0.05, bc.cut = 3, arrayType = &quot;450k&quot;, write = T)</code></pre>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="BMIQ"></a></p>
+<p><strong>4. Data normalization (BMIQ)</strong></p>
+<p>Illumina <code>HumanMethylation 450k</code> and <code>HumanMethylation EPIC</code> platform have both Type I and Type II probes on the microarray while <code>HumanMethylation 27k</code>. Due to the chemical differences between the two types of probes exist in the beadchip, Type I and Type II probes have different value distribution. The difference should be OK if all samples were run on the same platform. However, if we want to compare the different samples between <code>HM450k</code> and <code>HM27k</code>, data should be normalized before any comparison (especially because many samples from TCGA were run on both <code>HM27k</code> and <code>HM450k</code>).</p>
+<p>Many normalization method is available right now, including Beta-mixture quantile normalization <code>(BMIQ)</code>, subset-quantile with array normalizaton <code>SWAN</code>, peak-based normalization <code>PBC</code>, functional normalization, and so on. Because this package is focus on the genomic information prediction, therefore, we only provide one normalization method <code>BMIQ</code> here, the gene expression subtype prediction need the specific <code>BMIQ</code> normalized data as input.</p>
+<p>This normalization step is recommended to be processed before the probe filtering (<code>UniD.probefilter</code>). Because the normalization depends on the beta value distribution of all Type I and Type II probes exist. If the probe filtering processed first, a lot of probes may be filtered out and the normalization process will be easily biased.</p>
+<pre><code>Beta.BMIQ &lt;- UniD.BMIQ(Beta.raw, outDir = &quot;~/Desktop/output/&quot;,
+detP.cut = 0.05, bc.cut = 3, arrayType = &quot;450k&quot;, write = T)</code></pre>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="filter"></a></p>
+<p><strong>5. Probe filtering</strong></p>
+<p>After we generated Beta.raw and Beta.BMIQ, we could use the <code>UniD.probefilter</code> to do the probe filtering. Probes can be optionally filtered out if they belonging to the following categories. Each filter is controled by one argument in the function of <code>UniD.probefilter()</code>.</p>
+<ul>
+<li><code>filterXY</code>: probes located on Chromosome X or Y (<code>HM450</code> and <code>HM EPIC</code> different version)</li>
+<li><code>filterSNPHit</code>: probe quality may get affected by SNP nearby (<code>Zhou W, Nucleic Acids Research, 2017</code>, <code>HM450</code> and <code>HMEPIC</code> different version)</li>
+<li><code>filterMultiHit</code>: probes can be mapped to multiple locations (<code>Nordlund J, Genome Biology, 2013</code>, <code>HM450</code> version)</li>
+<li><code>filterNonCG</code>: probes not targeted to the CpG methylation sites</li>
+<li><p><code>filterNonEpic</code>: probes available on <code>HM450</code> but not available on <code>HMEPIC</code>. This is useful when using data from <code>HM450</code> to build models and make sure it is suitable for data from <code>HMEPIC</code>.</p></li>
+<li><code>filterSample</code> and <code>filterSample.cut</code>: Whether filter out samples with large proportion of missing values (missing values may caused by non-significant detection P-value or low beadcount). The <code>filterSample.cut</code> is controling the threshold to filter sample</li>
+<li><p><code>filterProbe</code> and <code>filterProbe.cut</code>: whether filter out probes with large proportion of missing values among samples. This should be use with careful if sample size is small. <code>filterProbe.cut</code> is controling the threshold for probe filtering.</p></li>
+</ul>
+<pre><code>Beta clean &lt;- UniD.probefilter(Beta.raw, outDir = &quot;~/Desktop/output/&quot;,
+filterXY = T, filterSNPHit = T, filterMultiHit = T, filterNonCG = F,
+filterNonEpic = T, arrayType = &quot;450k&quot;, filterSample = T, filterSample.cut
+= 0.1, filterProbe = F, write = T)</code></pre>
+<p>After <code>UniD.probefilter</code>, the <code>Beta.clean</code> is ready for use as data frame.</p>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="prediction"></a></p>
+</div>
+<div id="data-prediction" class="section level2">
+<h2>Data prediction</h2>
+<p>All prediction models were compiled within one function <code>UniD.pred()</code>. Each argument control the prediction for each genomic information as shown below:</p>
+<ul>
+<li><code>Pred.1p19q</code>: whether predict chromosome 1p/19q co-deletion</li>
+<li><code>Pred.IDH</code>: whether predict <em>IDH</em> mutation status</li>
+<li><code>Pred.ATRX</code>: whether predict <em>ATRX</em> mutation status</li>
+<li><code>Pred.TERTp</code>: whether predict <em>TERT</em> promoter mutation status</li>
+<li><code>Pred.ExpressSubtype</code>: whether predict TCGA gene expression subtype</li>
+<li><code>Pred.MGMTExpress</code>: whether predict <em>MGMT</em> expression level by tumor</li>
+</ul>
+<p>However, what need to be emphasize here is we have two different input data sets. For <code>Pred.ExpressSubtype</code>, we need to use the <code>Beta.BMIQ</code> which is the beta value normalized by <code>BMIQ</code> method. For all other predicton model, <code>Beta.clean</code> or <code>Beta.raw</code> is OK.</p>
+<p><a href="#top">Back to Top</a></p>
+<p><a id="example"></a></p>
+</div>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
+<p>The example data set generated from EPIC platform is downloaded from the Illumina website, the demo data set <a href="https://support.illumina.com/array/array_kits/infinium-methylationepic-beadchip-kit/downloads.html" class="uri">https://support.illumina.com/array/array_kits/infinium-methylationepic-beadchip-kit/downloads.html</a>. If processing the 450k data, the general data processing workfow is the same as EPIC data set, but need to change the <code>arrayType</code> to <code>450k</code> and may set the <code>filterNonEpic</code> as <code>TRUE</code>.</p>
+<p><strong>0. One step function</strong></p>
+<p>For usage convience, all the functions can be called one by one with one function. In this function, all arguments will use the default values. Use with careful.</p>
+<pre><code>pred &lt;- UniD(dataDir = &quot;~/Desktop/test_450k/&quot;, outDir = &quot;~/Desktop/test_450k/&quot;, arrayType = &quot;450k&quot;, write = T, sampleType = &quot;other&quot;)</code></pre>
+<p><strong>1. Data loading</strong></p>
+<pre><code>loading &lt;- UniD.load(dataDir = &quot;./inst/extdata/&quot;,
+                     outDir = &quot;./data/&quot;, arrayType = &quot;EPIC&quot;,
+                     write = T)</code></pre>
+<pre><code>#R log
+====Data Loading Start====
+Package version of UniD is: 0.0.0.9000
+Loading data from &quot;./inst/extdata/&quot;
+[read.metharray.sheet] Found the following CSV files:
+[1] &quot;./inst/extdata//sample_sheet_EPIC.csv&quot;
+loading(rgSet, Mset, detP) saved as: ./data//loading.Rdata
+====Data Loading Finsihed====</code></pre>
+<p><strong>2. Checking Internal Controls</strong></p>
+<pre><code>samQC &lt;- UniD.intctl(loading = loading, dataDir = &quot;./inst/extdata/&quot;,
+                     outDir = &quot;./data/&quot;, arrayType = &quot;EPIC&quot;,
+                     sampleType = &quot;other&quot;, write = T)</code></pre>
+<pre><code>#R log
+====Internal Control Checking Start====
+Failed sample in Internal Control:
+
+Restoration_green :
+staining_green : 
+staining_red : 
+extension_green : 
+extension_red : 
+hybridization_green_HM : 
+hybridization_green_ML : 
+targetRemoval_green1 : 
+targetRemoval_green2 : 
+bisulfite_conversion_I_green1 : 
+bisulfite_conversion_I_green2 : 
+bisulfite_conversion_I_red1 : 
+bisulfite_conversion_I_red2 : 
+bisulfite_conversion_II_1 : 
+bisulfite_conversion_II_2 : 
+specificity_I_green : 
+specificity_I_red : 
+specificity_II_1 : 
+specificity_II_2 : 
+nonpolymorphic_green : 
+nonpolymorphic_red : 
+
+Internal Controls data save as: ./data//samQ.Rdata
+Internal Controls checking results saved as: ./data//samQC_Internal.Control.csv
+====Internal Control Checking Finished====</code></pre>
+<p><strong>3. Checking Probe Quality</strong></p>
+<pre><code>Beta.raw &lt;- UniD.dataqc(loading = loading, outDir = &quot;./data/&quot;,
+                        detP.cut = 0.05, bc.cut = 3, arrayType = &quot;EPIC&quot;, write = T)</code></pre>
+<pre><code>#R log
+====Sample-wise Probe Quality Assessment Start====
+[1] &quot;The failed fraction per sample (failed detP and bc may overlap): &quot;
+        Fail.Frac.detP Fail.Frac.beadcount Fail.Frac.NA
+Sample1    0.001067099         0.001690054  0.002669478
+Sample2    0.001085557         0.001621991  0.002609490
+Sample3    0.000711784         0.001390113  0.002070749
+The raw Beta value were saved as: ./data//UniD_Beta.raw.Rdata
+The fraction of failed probes per sample saved as: ./data//Failed_probe_Fraction.csv
+====Sample-wise Probe Quality Assessment Finished====</code></pre>
+<p><strong>4. Data normalization (BMIQ)</strong></p>
+<pre><code>Beta.BMIQ &lt;- UniD.BMIQ(Beta.raw = Beta.raw, arrayType = &quot;EPIC&quot;,
+                       outDir = &quot;./data/&quot;, write = T)</code></pre>
+<pre><code>#R log
+====BMIQ Normalization Start====
+[1] &quot;BMIQ on sample: Sample1&quot;
+Sample1 has missing value: 2314
+[1] &quot;Fitting EM beta mixture to type1 probes&quot;
+[1] Inf
+[1] 0.004261074
+[1] 0.005484627
+[1] 0.005832957
+[1] 0.005638393
+[1] &quot;Done&quot;
+[1] &quot;Fitting EM beta mixture to type2 probes&quot;
+[1] Inf
+...
+...
+[1] &quot;Done&quot;
+[1] &quot;Start normalising type 2 probes&quot;
+[1] &quot;Finished for sample Sample3&quot;
+BMIQ normalized Beta value saved as: ./data//UniD_Beta.BMIQ.Rdata
+====BMIQ Normalization Finished====</code></pre>
+<p><strong>5. Probe filtering</strong></p>
+<pre><code>Beta.clean &lt;- UniD.probefilter(Beta.raw = Beta.raw, outDir = &quot;./data/&quot;,
+                               filterXY = T, filterSNPHit = T, filterMultiHit = T,
+                               filterNonCG = F, filterNonEpic = F, arrayType = &quot;EPIC&quot;,
+                               filterSample = T, filterSample.cut = 0.1, filterProbe = F,
+                               write = T)</code></pre>
+<pre><code>#R log
+====Probe Filter Start====
+Delete 19681 probes on ChrX/Y for EPIC Platform.
+Delete 78720 probes affected by SNP for EPIC Platform. (Zhou W, Nucleic Acids Research, 2017)
+Delete 63 probes mapped to multiple site for EPIC Platform. (Nordlund J, Genome Biology, 2013)
+[1] &quot;The failed fraction per sample (after all probe filters): &quot;
+        Fail.Frac.NA
+Sample1  0.002178632
+Sample2  0.002108354
+Sample3  0.001668463
+
+Final data matrix is: 3 samples * 768372 probes.
+====Probe Filter Finish====</code></pre>
+<p><strong>6. Data prediction</strong></p>
+<pre><code>Pred &lt;- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, InputValueType = &quot;B&quot;,
+                  Pred.IDH = T, Pred.1p19q = T, Pred.ATRX = T, Pred.TERTp = T,
+                  Pred.ExpressSubtype = T, Pred.MGMTExpress = F,
+                  outDir = &quot;./data/&quot;)</code></pre>
+<pre><code>#R log
+====Biomarker Prediction Start====
+#Note: inputdata and inputdata.BMIQ must with columns as samples
+          and rows as probes
+#Note: inputdata.BMIQ must be Beta value format
+
+##Predict Chromosome 1p19q co-deletion Start##
+Change B value to M value
+No missing value for predictor.
+#Predict Chromosome 1p19q co-deletion Finish##
+
+##Predict IDH mutation status Start##
+Change B value to M value
+KNN used to impute 1 missing value
+Imputation Done (Check missing value fraction for each sample)
+##Predict IDH mutation status Finish##
+
+##Predict ATRX mutation status Start##
+Change B value to M value
+KNN used to impute 4 missing value
+Imputation Done (Check missing value fraction for each sample)
+##Predict ATRX mutation status Finish##
+
+##Predict TERT promoter mutation status Start##
+Change B value to M value
+KNN used to impute 11 missing value
+Imputation Done (Check missing value fraction for each sample)
+##Predict TERT promoter mutation status Finish##
+
+##Predict TCGA Gene Expression subtype Start##
+Change B value to M value
+No missing value for predictor.
+The following `from` values were not present in `x`: 1, 3
+##Predict TCGA Gene Expression subtype Finish##
+
+Predicted result was saved as: ./data//UniD_Biomarker.Pred.csv
+====Biomarker Prediction Finish====</code></pre>
+<p><a href="#top">Back to Top</a></p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
