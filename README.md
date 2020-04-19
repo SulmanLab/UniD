@@ -7,6 +7,8 @@ author: "Jie Yang"
 <a id="top"></a>
 [Introduction](#Introduction)
 
+[source file and installation](#source)
+
 [Data Processing and QC](#QC)
 
 1. [Data loading](#QC1)
@@ -50,6 +52,15 @@ In the genomic information prediction section: DNA methylation data generated fr
 
 [Back to Top](#top)
 
+<a id="source"></a>
+## Source file and installation
+https://drive.google.com/open?id=13NiEX8SA8LxZ5ayawDpzlAL-HiycxHoD
+
+Please use this link to download the source file and install it with:
+```
+install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
+```
+**Note**: some prerequisite R packages need to be installed first.
 
 <a id="QC"></a>
 
@@ -77,9 +88,12 @@ sample4,,,,,1001001001,R04C01
 A list with all necessary information will be created using `UniD.load()`. For example:
 
 ```
-loading <- UniD.load(dataDir = "~/Desktop/IDAT/", outDir = "~/Desktop/output/",
+loading <- UniD.load(dataDir = "~/Desktop/IDAT", outDir = "~/Desktop/output/",
 arrayType = "450k", write = T)
 ```
+**note**: the input dataDir should not follow with "/", for example:
+Right version: ~/Desktop/IDAT
+Wrong version: ~/Desktop/IDAT/
 
 [Back to Top](#top)
 
