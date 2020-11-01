@@ -68,7 +68,7 @@ install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 library(devtools)
 install_github("JieYang031/UniD")
 ```
-Some packages are not available from R repository, but Bioconductor. If R packages from Bioconductor is not available, need to install them from Bioconductor. For example:
+Some packages need to be installed from Bioconductor. You can install them such as:
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
