@@ -7,7 +7,7 @@ author: "Jie Yang"
 <a id="top"></a>
 [Introduction](#Introduction)
 
-[source file and installation](#source)
+[Installation](#source)
 
 [Data Processing and QC](#QC)
 
