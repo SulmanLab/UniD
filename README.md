@@ -53,7 +53,9 @@ In the genomic information prediction section: DNA methylation data generated fr
 [Back to Top](#top)
 
 <a id="source"></a>
-## Source file and installation
+## installation
+
+### 1. installation from source file
 https://drive.google.com/open?id=13NiEX8SA8LxZ5ayawDpzlAL-HiycxHoD
 
 Please use this link to download the source file and install it with:
@@ -61,6 +63,18 @@ Please use this link to download the source file and install it with:
 install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
 **Note**: some prerequisite R packages need to be installed first.
+### 2. installation from github
+```
+library(devtools)
+install_github("JieYang031/UniD")
+```
+Some packages are not available from R repository, but Bioconductor. If R packages from Bioconductor is not available, need to install them from Bioconductor. For example:
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("wateRmelon") ## installing wateRmelon
+```
 
 <a id="QC"></a>
 
