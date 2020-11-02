@@ -72,6 +72,8 @@ Then install the package through source file.
 ```
 install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
+**NOTE**: Java development kit is requried for some prerequisite packages.
+
 <a id="QC"></a>
 
 ## Data processing and QC
