@@ -23,7 +23,7 @@ author: "Jie Yang"
 
 [Data prediction](#prediction)
 
-[Example](#example)
+[Run with Examples](#example)
 
 
 
