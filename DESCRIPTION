@@ -4,7 +4,7 @@ Title: Unified Diagnostic Platform for Gliomas
 Version: 0.0.1
 Date: 2017-11-25
 Author: Jie Yang [aut, cre]
-Maintainer: Jie Yang <jie.yang@uth.tmc.edu>
+Maintainer: Jie Yang <jieyang031@gmail.com>
 Description: Unified Diagnostic Platform for Gliomas. It uses the DNA methylation microarray data 
   (currently support Illumina 450k and EPIC platform) to predict multiple different genomic 
   information, including IDH, ATRX, and TERT promoter mutation status, chromosome 1p/19q 
