@@ -53,12 +53,10 @@ In the genomic information prediction section: DNA methylation data generated fr
 [Back to Top](#top)
 
 <a id="source"></a>
-## installation
-### 1. installation from github (recommend)
-You can download the code from github: http:s//github/com/JieYang031/UniD/
+## installation from source file
+Then install the package through source file: https://drive.google.com/file/d/13NiEX8SA8LxZ5ayawDpzlAL-HiycxHoD/view?usp=sharing
 ```
-library(devtools)
-install_github("JieYang031/UniD")
+install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
 Some prerequisite packages need to be installed from Bioconductor. You can install them such as:
 ```
@@ -66,11 +64,6 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
 BiocManager::install("wateRmelon") ## installing wateRmelon
-```
-### 2. installation from source file
-Then install the package through source file: https://drive.google.com/file/d/13NiEX8SA8LxZ5ayawDpzlAL-HiycxHoD/view?usp=sharing
-```
-install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
 **NOTE**: Java development kit is requried for some prerequisite packages.
 
