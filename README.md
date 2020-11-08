@@ -25,6 +25,8 @@ author: "Jie Yang"
 
 [Run with Examples](#example)
 
+[System Requirements](#system)
+
 
 
 <a id="Introduction"></a>
@@ -391,7 +393,19 @@ Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueTy
 
     Predicted result was saved as: .//UniD_Biomarker.Pred.csv
     ====Biomarker Prediction Finish====
-    
+
+
+<a id="system"></a>
+## System requirements
+
+### OS requirements
+Our UniD package has been tested on the following environment:
+
+- macOS: Mojave 10.14.6
+- Windows 10. R version 3.6.2
+
+### Dependent R packages
+Please see the DESCRIPTION.
 
 [Back to Top](#top)
 
