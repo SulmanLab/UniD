@@ -236,7 +236,7 @@ loading <- UniD.load(dataDir = dataDir,
     Loading data from "./inst/extdata/"
     [read.metharray.sheet] Found the following CSV files:
     [1] "./inst/extdata//sample_sheet_EPIC.csv"
-    loading(rgSet, Mset, detP) saved as: ./data//loading.Rdata
+    loading(rgSet, Mset, detP) saved as: .//loading.Rdata
     ====Data Loading Finsihed====
     
 __2. Checking Internal Controls__
@@ -274,8 +274,8 @@ samQC <- UniD.intctl(loading = loading, dataDir = dataDir,
     nonpolymorphic_green : 
     nonpolymorphic_red : 
     
-    Internal Controls data save as: ./data//samQ.Rdata
-    Internal Controls checking results saved as: ./data//samQC_Internal.Control.csv
+    Internal Controls data save as: .//samQ.Rdata
+    Internal Controls checking results saved as: .//samQC_Internal.Control.csv
     ====Internal Control Checking Finished====
 
 
@@ -293,15 +293,15 @@ Beta.raw <- UniD.dataqc(loading = loading, outDir = "./",
     Sample1    0.001067099         0.001690054  0.002669478
     Sample2    0.001085557         0.001621991  0.002609490
     Sample3    0.000711784         0.001390113  0.002070749
-    The raw Beta value were saved as: ./data//UniD_Beta.raw.Rdata
-    The fraction of failed probes per sample saved as: ./data//Failed_probe_Fraction.csv
+    The raw Beta value were saved as: .//UniD_Beta.raw.Rdata
+    The fraction of failed probes per sample saved as: .//Failed_probe_Fraction.csv
     ====Sample-wise Probe Quality Assessment Finished====
 
 __4. Data normalization (BMIQ)__
 
 ```
 Beta.BMIQ <- UniD.BMIQ(Beta.raw = Beta.raw, arrayType = "EPIC",
-                       outDir = "./data/", write = T)
+                       outDir = "./", write = T)
 ```
 
 
@@ -323,7 +323,7 @@ Beta.BMIQ <- UniD.BMIQ(Beta.raw = Beta.raw, arrayType = "EPIC",
     [1] "Done"
     [1] "Start normalising type 2 probes"
     [1] "Finished for sample Sample3"
-    BMIQ normalized Beta value saved as: ./data//UniD_Beta.BMIQ.Rdata
+    BMIQ normalized Beta value saved as: .//UniD_Beta.BMIQ.Rdata
     ====BMIQ Normalization Finished====
 
 
@@ -396,7 +396,7 @@ Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueTy
     The following `from` values were not present in `x`: 1, 3
     ##Predict TCGA Gene Expression subtype Finish##
     
-    Predicted result was saved as: ./data//UniD_Biomarker.Pred.csv
+    Predicted result was saved as: .//UniD_Biomarker.Pred.csv
     ====Biomarker Prediction Finish====
     
 
