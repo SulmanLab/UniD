@@ -215,6 +215,7 @@ __0. One step function__
 For usage convience, all the functions can be called one by one with one function. In this function, all arguments will use the default values. Use with careful.
 
 ```
+library(UniD)
 library_path = .libPaths()
 dataDir = paste0(library_path, "/UniD/extdata")
 
@@ -225,18 +226,17 @@ __1. Data loading__
 
 ```
 
-loading <- UniD.load(dataDir = dataDir,
-                     outDir = "./", arrayType = "EPIC",
-                     write = T)
+loading <- UniD.load(dataDir = dataDir, outDir = "./", arrayType = "EPIC", write = T)
+
 ```
 
     #R log
     ====Data Loading Start====
-    Package version of UniD is: 0.0.0.9000
-    Loading data from "./inst/extdata/"
+    Package version of UniD is: 0.0.1
+    Loading data from "C:/Program Files/R/R-3.6.2/library/UniD/extdata"
     [read.metharray.sheet] Found the following CSV files:
-    [1] "./inst/extdata//sample_sheet_EPIC.csv"
-    loading(rgSet, Mset, detP) saved as: .//loading.Rdata
+    [1] "C:/Program Files/R/R-3.6.2/library/UniD/extdata/sample_sheet_EPIC.csv"
+    loading(rgSet, Mset, detP) saved as: .//loading.RData
     ====Data Loading Finsihed====
     
 __2. Checking Internal Controls__
@@ -244,15 +244,15 @@ __2. Checking Internal Controls__
 
 ```
 samQC <- UniD.intctl(loading = loading, dataDir = dataDir,
-                     outDir = "./", arrayType = "EPIC",
-                     sampleType = "other", write = T)
+                     outDir = "./", arrayType = "EPIC", sampleType = "other",
+                     write = T)
 ```
 
     #R log
     ====Internal Control Checking Start====
     Failed sample in Internal Control:
-    
-    Restoration_green :
+
+    Restoration_green : 
     staining_green : 
     staining_red : 
     extension_green : 
@@ -273,8 +273,7 @@ samQC <- UniD.intctl(loading = loading, dataDir = dataDir,
     specificity_II_2 : 
     nonpolymorphic_green : 
     nonpolymorphic_red : 
-    
-    Internal Controls data save as: .//samQ.Rdata
+
     Internal Controls checking results saved as: .//samQC_Internal.Control.csv
     ====Internal Control Checking Finished====
 
@@ -289,52 +288,46 @@ Beta.raw <- UniD.dataqc(loading = loading, outDir = "./",
     #R log
     ====Sample-wise Probe Quality Assessment Start====
     [1] "The failed fraction per sample (failed detP and bc may overlap): "
-            Fail.Frac.detP Fail.Frac.beadcount Fail.Frac.NA
-    Sample1    0.001067099         0.001690054  0.002669478
-    Sample2    0.001085557         0.001621991  0.002609490
-    Sample3    0.000711784         0.001390113  0.002070749
-    The raw Beta value were saved as: .//UniD_Beta.raw.Rdata
+                        Fail.Frac.detP Fail.Frac.beadcount Fail.Frac.NA
+    200144450018_R04C01    0.001067099         0.001690054  0.002669478
+    200144450019_R07C01    0.001085557         0.001621991  0.002609490
+    200144450021_R05C01    0.000711784         0.001390113  0.002070749
+    The raw Beta value were saved as: .//UniD_Beta.raw.RData
     The fraction of failed probes per sample saved as: .//Failed_probe_Fraction.csv
     ====Sample-wise Probe Quality Assessment Finished====
 
 __4. Data normalization (BMIQ)__
 
 ```
-Beta.BMIQ <- UniD.BMIQ(Beta.raw = Beta.raw, arrayType = "EPIC",
-                       outDir = "./", write = T)
+Beta.BMIQ <- UniD.BMIQ(Beta.raw, outDir = "./",
+                        arrayType = "EPIC", write = T)
 ```
 
 
     #R log
     ====BMIQ Normalization Start====
-    [1] "BMIQ on sample: Sample1"
-    Sample1 has missing value: 2314
+    [1] "BMIQ on sample: 200144450018_R04C01"
+    200144450018_R04C01 has missing value: 2314
     [1] "Fitting EM beta mixture to type1 probes"
     [1] Inf
-    [1] 0.004261074
-    [1] 0.005484627
-    [1] 0.005832957
-    [1] 0.005638393
-    [1] "Done"
-    [1] "Fitting EM beta mixture to type2 probes"
-    [1] Inf
-    ...
+    [1] 0.005296374
+    ... 
     ...
     [1] "Done"
     [1] "Start normalising type 2 probes"
-    [1] "Finished for sample Sample3"
-    BMIQ normalized Beta value saved as: .//UniD_Beta.BMIQ.Rdata
+    [1] "Finished for sample 200144450021_R05C01"
+    BMIQ normalized Beta value saved as: .//UniD_Beta.BMIQ.RData
     ====BMIQ Normalization Finished====
 
 
 __5. Probe filtering__
 
 ```
-Beta.clean <- UniD.probefilter(Beta.raw = Beta.raw, outDir = "./data/",
-                               filterXY = T, filterSNPHit = T, filterMultiHit = T,
-                               filterNonCG = F, filterNonEpic = F, arrayType = "EPIC",
-                               filterSample = T, filterSample.cut = 0.1, filterProbe = F,
-                               write = T)
+Beta.clean <- UniD.probefilter(Beta.raw = Beta.raw, outDir = "./",
+                              filterXY = T, filterSNPHit = T, filterMultiHit = T,
+                              filterNonCG = F, filterNonEpic = F, arrayType = "EPIC",
+                              filterSample = T, filterSample.cut = 0.1, filterProbe = F,
+                              write = T)
 ```
 
     #R log
@@ -343,10 +336,10 @@ Beta.clean <- UniD.probefilter(Beta.raw = Beta.raw, outDir = "./data/",
     Delete 78720 probes affected by SNP for EPIC Platform. (Zhou W, Nucleic Acids Research, 2017)
     Delete 63 probes mapped to multiple site for EPIC Platform. (Nordlund J, Genome Biology, 2013)
     [1] "The failed fraction per sample (after all probe filters): "
-            Fail.Frac.NA
-    Sample1  0.002178632
-    Sample2  0.002108354
-    Sample3  0.001668463
+                        Fail.Frac.NA
+    200144450018_R04C01  0.002178632
+    200144450019_R07C01  0.002108354
+    200144450021_R05C01  0.001668463
 
     Final data matrix is: 3 samples * 768372 probes.
     ====Probe Filter Finish====
@@ -357,8 +350,8 @@ __6. Data prediction__
 ```
 Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueType = "B",
                   Pred.IDH = T, Pred.1p19q = T, Pred.ATRX = T, Pred.TERTp = T,
-                  Pred.ExpressSubtype = T,
-                  outDir = "./")
+                  Pred.ExpressSubtype = T, 
+                  outDir = "./", write = T)
 ```
 
     #R log
@@ -366,36 +359,36 @@ Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueTy
     #Note: inputdata and inputdata.BMIQ must with columns as samples
               and rows as probes
     #Note: inputdata.BMIQ must be Beta value format
-    
+
     ##Predict Chromosome 1p19q co-deletion Start##
     Change B value to M value
     No missing value for predictor.
     #Predict Chromosome 1p19q co-deletion Finish##
-    
+
     ##Predict IDH mutation status Start##
     Change B value to M value
     KNN used to impute 1 missing value
     Imputation Done (Check missing value fraction for each sample)
     ##Predict IDH mutation status Finish##
-    
+
     ##Predict ATRX mutation status Start##
     Change B value to M value
     KNN used to impute 4 missing value
     Imputation Done (Check missing value fraction for each sample)
     ##Predict ATRX mutation status Finish##
-    
+
     ##Predict TERT promoter mutation status Start##
     Change B value to M value
     KNN used to impute 11 missing value
     Imputation Done (Check missing value fraction for each sample)
     ##Predict TERT promoter mutation status Finish##
-    
+
     ##Predict TCGA Gene Expression subtype Start##
     Change B value to M value
     No missing value for predictor.
     The following `from` values were not present in `x`: 1, 3
     ##Predict TCGA Gene Expression subtype Finish##
-    
+
     Predicted result was saved as: .//UniD_Biomarker.Pred.csv
     ====Biomarker Prediction Finish====
     
