@@ -60,7 +60,7 @@ Then install the package through source file: https://drive.google.com/file/d/13
 ```
 install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
-In general, the above installation take about 15-20 min if all reprequsite packages are already installed.
+In general, the above installation take about 5 min if all reprequsite packages are already installed.
 
 Some prerequisite packages need to be installed from Bioconductor. You can install them such as:
 ```
