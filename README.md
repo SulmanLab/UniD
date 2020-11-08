@@ -355,10 +355,10 @@ Beta.clean <- UniD.probefilter(Beta.raw = Beta.raw, outDir = "./data/",
 __6. Data prediction__
 
 ```
-Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, InputValueType = "B",
+Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueType = "B",
                   Pred.IDH = T, Pred.1p19q = T, Pred.ATRX = T, Pred.TERTp = T,
-                  Pred.ExpressSubtype = T, Pred.MGMTExpress = F,
-                  outDir = "./data/")
+                  Pred.ExpressSubtype = T,
+                  outDir = "./")
 ```
 
     #R log
