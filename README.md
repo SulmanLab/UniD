@@ -206,7 +206,7 @@ However, what need to be emphasize here is we have two different input data sets
 
 <a id="example"></a>
 
-## Examples
+## Run with examples
 
 The example data set generated from EPIC platform is downloaded from the Illumina website, the demo data set <https://support.illumina.com/array/array_kits/infinium-methylationepic-beadchip-kit/downloads.html>. If processing the 450k data, the general data processing workfow is the same as EPIC data set, but need to change the `arrayType` to `450k` and may set the `filterNonEpic` as `TRUE`.
 
@@ -215,14 +215,18 @@ __0. One step function__
 For usage convience, all the functions can be called one by one with one function. In this function, all arguments will use the default values. Use with careful.
 
 ```
-pred <- UniD(dataDir = "~/Desktop/test_450k/", outDir = "~/Desktop/test_450k/", arrayType = "450k", write = T, sampleType = "other")
+library_path = .libPaths()
+dataDir = paste0(library_path, "/UniD/extdata")
+
+pred <- UniD(dataDir = dataDir, outDir = "./", arrayType = "EPIC", write = T, sampleType = "other")
 ```
 
 __1. Data loading__
 
 ```
-loading <- UniD.load(dataDir = "./inst/extdata/",
-                     outDir = "./data/", arrayType = "EPIC",
+
+loading <- UniD.load(dataDir = dataDir,
+                     outDir = "./", arrayType = "EPIC",
                      write = T)
 ```
 
@@ -239,8 +243,8 @@ __2. Checking Internal Controls__
 
 
 ```
-samQC <- UniD.intctl(loading = loading, dataDir = "./inst/extdata/",
-                     outDir = "./data/", arrayType = "EPIC",
+samQC <- UniD.intctl(loading = loading, dataDir = dataDir,
+                     outDir = "./", arrayType = "EPIC",
                      sampleType = "other", write = T)
 ```
 
@@ -278,7 +282,7 @@ samQC <- UniD.intctl(loading = loading, dataDir = "./inst/extdata/",
 __3. Checking Probe Quality__
 
 ```
-Beta.raw <- UniD.dataqc(loading = loading, outDir = "./data/",
+Beta.raw <- UniD.dataqc(loading = loading, outDir = "./",
                         detP.cut = 0.05, bc.cut = 3, arrayType = "EPIC", write = T)
 ```
 
