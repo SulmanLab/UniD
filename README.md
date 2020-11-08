@@ -416,7 +416,7 @@ The returned matrix looks like:
 ### OS requirements
 Our UniD package has been tested on the following environment:
 
-- macOS: Mojave 10.14.6
+- macOS: Mojave 10.14.6. os darwin13.4.0, R version 3.3.2
 - Windows 10. R version 3.6.2
 
 ### Dependent R packages
