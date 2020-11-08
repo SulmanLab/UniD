@@ -103,9 +103,9 @@ A list with all necessary information will be created using `UniD.load()`. For e
 loading <- UniD.load(dataDir = "~/Desktop/IDAT", outDir = "~/Desktop/output/",
 arrayType = "450k", write = T)
 ```
-**note**: the input dataDir should not follow with "/", for example:
-Right version: ~/Desktop/IDAT
-Wrong version: ~/Desktop/IDAT/
+**note**: the input dataDir should not follow with "/", for example:  
+Right version: ~/Desktop/IDAT  
+Wrong version: ~/Desktop/IDAT/  
 
 [Back to Top](#top)
 
