@@ -60,6 +60,8 @@ Then install the package through source file: https://drive.google.com/file/d/13
 ```
 install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
+In general, the above installation take about 15-20 min if all reprequsite packages are already installed.
+
 Some prerequisite packages need to be installed from Bioconductor. You can install them such as:
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
@@ -67,6 +69,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 
 BiocManager::install("wateRmelon") ## installing wateRmelon
 ```
+
 **NOTE**: Java development kit is requried for some prerequisite packages.
 
 <a id="QC"></a>
@@ -394,6 +397,20 @@ Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueTy
     Predicted result was saved as: .//UniD_Biomarker.Pred.csv
     ====Biomarker Prediction Finish====
 
+The returned matrix looks like:
+    
+    #                                sample pred.1p19q.codel missing.probe.1p19q pred.IDH missing.probe.IDH pred.ATRX
+    200144450018_R04C01 200144450018_R04C01        non-codel                   0       WT              0.00        WT
+    200144450019_R07C01 200144450019_R07C01        non-codel                   0       WT              0.00        WT
+    200144450021_R05C01 200144450021_R05C01        non-codel                   0       WT              0.01        WT
+                        missing.probe.ATRX pred.TERTp missing.probe.TERTp Pred.subtype  C_prob  M_prob  P_prob
+    200144450018_R04C01              0.006         WT               0.003  Mesenchymal 0.19378  0.5866 0.21962
+    200144450019_R07C01              0.002         WT               0.006  Mesenchymal 0.19242 0.58884 0.21874
+    200144450021_R05C01              0.000         WT               0.002  Mesenchymal 0.18638 0.60008 0.21354
+                        missing.probe.subtype
+    200144450018_R04C01                     0
+    200144450019_R07C01                     0
+    200144450021_R05C01                     0
 
 <a id="system"></a>
 ## System requirements
