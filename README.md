@@ -50,7 +50,6 @@ In the genomic information prediction section: DNA methylation data generated fr
 - _ATRX_ mutation status
 - _TERT_ promoter mutation status
 - TCGA gene expression subtype (Classical, Mesenchymal, and Proneural)
-- _MGMT_ expression level of tumor
 
 [Back to Top](#top)
 
@@ -203,7 +202,6 @@ All prediction models were compiled within one function `UniD.pred()`. Each argu
 - `Pred.ATRX`: whether predict _ATRX_ mutation status
 - `Pred.TERTp`: whether predict _TERT_ promoter mutation status
 - `Pred.ExpressSubtype`: whether predict TCGA gene expression subtype
-- `Pred.MGMTExpress`: whether predict _MGMT_ expression level by tumor
 
 However, what need to be emphasize here is we have two different input data sets. For `Pred.ExpressSubtype`, we need to use the `Beta.BMIQ` which is the beta value normalized by `BMIQ` method. For all other predicton model, `Beta.clean` or `Beta.raw` is OK.                       
 
