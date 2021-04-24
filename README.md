@@ -34,9 +34,9 @@ author: "Jie Yang"
 
 ## Updates
 
-04/23/2021:
-    -- add MGMT prediction function (MGMT-STP27)
-    -- update source package link
+04/23/2021:  
+    -- add MGMT prediction function (MGMT-STP27).  
+    -- update source package link.  
 
 ## Introduction
 
