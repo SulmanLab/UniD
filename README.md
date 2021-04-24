@@ -31,6 +31,13 @@ author: "Jie Yang"
 
 <a id="Introduction"></a>
 
+
+## Updates
+
+04/23/2021:
+    -- add MGMT prediction function (MGMT-STP27)
+    -- update source package link
+
 ## Introduction
 
 `UniD` is short for Unified Diagnostic Platform of gliomas, which is designed to predict other genomic information using Illumina Infinium DNA methylation microarray data. This package includes two section of function: data processing QC and genomic information prediction. 
@@ -49,13 +56,15 @@ In the genomic information prediction section: DNA methylation data generated fr
 - _IDH_ mutation status
 - _ATRX_ mutation status
 - _TERT_ promoter mutation status
+- _MGMT_ promoter methylation status
 - TCGA gene expression subtype (Classical, Mesenchymal, and Proneural)
 
 [Back to Top](#top)
 
 <a id="source"></a>
 ## installation from source file
-Then install the package through source file: https://drive.google.com/file/d/13NiEX8SA8LxZ5ayawDpzlAL-HiycxHoD/view?usp=sharing
+Then install the package through source file: 
+https://drive.google.com/file/d/1cctCX6u3aVPqPYVsH0Ywjr9IYmvt-vIY/view?usp=sharing
 ```
 install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
@@ -201,6 +210,7 @@ All prediction models were compiled within one function `UniD.pred()`. Each argu
 - `Pred.IDH`: whether predict _IDH_ mutation status
 - `Pred.ATRX`: whether predict _ATRX_ mutation status
 - `Pred.TERTp`: whether predict _TERT_ promoter mutation status
+- `Pred.MGMT`: whether the MGMT promoter is methylated or not
 - `Pred.ExpressSubtype`: whether predict TCGA gene expression subtype
 
 However, what need to be emphasize here is we have two different input data sets. For `Pred.ExpressSubtype`, we need to use the `Beta.BMIQ` which is the beta value normalized by `BMIQ` method. For all other predicton model, `Beta.clean` or `Beta.raw` is OK.                       
@@ -352,7 +362,7 @@ __6. Data prediction__
 
 ```
 Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueType = "B",
-                  Pred.IDH = T, Pred.1p19q = T, Pred.ATRX = T, Pred.TERTp = T,
+                  Pred.IDH = T, Pred.1p19q = T, Pred.ATRX = T, Pred.TERTp = T, Pred.MGMT = T,
                   Pred.ExpressSubtype = T, 
                   outDir = "./", write = T)
 ```
@@ -386,6 +396,10 @@ Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueTy
     Imputation Done (Check missing value fraction for each sample)
     ##Predict TERT promoter mutation status Finish##
 
+    ##Predict MGMT promoter methylation status##
+    Change B value to M value
+    ##Predict MGMT promoter methylation status status Finish##
+    
     ##Predict TCGA Gene Expression subtype Start##
     Change B value to M value
     No missing value for predictor.
@@ -397,18 +411,24 @@ Pred <- UniD.pred(inputdata = Beta.raw, inputdata.BMIQ = Beta.BMIQ, inputvalueTy
 
 The returned matrix looks like:
     
-    #                                sample pred.1p19q.codel missing.probe.1p19q pred.IDH missing.probe.IDH pred.ATRX
-    200144450018_R04C01 200144450018_R04C01        non-codel                   0       WT              0.00        WT
-    200144450019_R07C01 200144450019_R07C01        non-codel                   0       WT              0.00        WT
-    200144450021_R05C01 200144450021_R05C01        non-codel                   0       WT              0.01        WT
-                        missing.probe.ATRX pred.TERTp missing.probe.TERTp Pred.subtype  C_prob  M_prob  P_prob
-    200144450018_R04C01              0.006         WT               0.003  Mesenchymal 0.19378  0.5866 0.21962
-    200144450019_R07C01              0.002         WT               0.006  Mesenchymal 0.19242 0.58884 0.21874
-    200144450021_R05C01              0.000         WT               0.002  Mesenchymal 0.18638 0.60008 0.21354
+                                     sample pred.1p19q.codel missing.probe.1p19q pred.IDH
+    200144450018_R04C01 200144450018_R04C01        non-codel                   0       WT
+    200144450019_R07C01 200144450019_R07C01        non-codel                   0       WT
+    200144450021_R05C01 200144450021_R05C01        non-codel                   0       WT
+                        missing.probe.IDH pred.ATRX missing.probe.ATRX pred.TERTp missing.probe.TERTp
+    200144450018_R04C01              0.00        WT              0.006         WT               0.003
+    200144450019_R07C01              0.00        WT              0.002         WT               0.006
+    200144450021_R05C01              0.01        WT              0.000         WT               0.002
+                           Pred_MGMT MGMT_methods Pred.subtype  C_prob  M_prob  P_prob
+    200144450018_R04C01 Unmethylated        STP27  Mesenchymal  0.1942 0.58648 0.21932
+    200144450019_R07C01 Unmethylated        STP27  Mesenchymal 0.19194 0.58948 0.21858
+    200144450021_R05C01 Unmethylated        STP27  Mesenchymal 0.18682  0.6002 0.21298
                         missing.probe.subtype
     200144450018_R04C01                     0
     200144450019_R07C01                     0
     200144450021_R05C01                     0
+
+
 
 <a id="system"></a>
 ## System requirements
@@ -416,7 +436,7 @@ The returned matrix looks like:
 ### OS requirements
 Our UniD package has been tested on the following environment:
 
-- macOS: Mojave 10.14.6. os darwin13.4.0, R version 3.3.2
+- macOS: Mojave 10.14.6. os darwin13.4.0, R version 4.0.5
 - Windows 10. R version 3.6.2
 
 ### Dependent R packages
