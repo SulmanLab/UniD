@@ -64,7 +64,7 @@ In the genomic information prediction section: DNA methylation data generated fr
 <a id="source"></a>
 ## installation from source file
 Then install the package through source file: 
-https://drive.google.com/file/d/1cctCX6u3aVPqPYVsH0Ywjr9IYmvt-vIY/view?usp=sharing
+https://drive.google.com/file/d/1bRq6l0wE9STPSdpQQTTy0LaPRig39pg3/view?usp=sharing
 ```
 install.packages("/path/to/file/UniD_0.0.1.tar.gz", repos = NULL, type="source")
 ```
